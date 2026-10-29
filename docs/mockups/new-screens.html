@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ekhaya new screens</title>
+<style>
+:root{
+  --bg:#f4f6f8; --card:#fff; --ink:#14181f; --muted:#5b6573; --line:#e3e7ec;
+  --teal:#0b6b5c; --teal-soft:#d9f3ec; --amber:#8a5a00; --amber-soft:#fff1d6;
+  --red:#a4262c; --red-soft:#fde8e8; --btn:#14181f; --chip:#eceff3;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#dde2e8;color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+h1{font-size:22px;margin:28px 16px 4px}
+.intro{margin:0 16px 8px;color:var(--muted);max-width:760px}
+h2.group{font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:32px 16px 12px}
+.row{display:flex;flex-wrap:wrap;gap:24px;padding:0 16px 8px;align-items:flex-start}
+figure{margin:0}
+figcaption{font-size:12px;color:var(--muted);margin:0 0 6px 4px}
+figcaption b{color:var(--ink)}
+.phone{width:390px;min-height:760px;background:var(--bg);border-radius:28px;border:1px solid #c5ccd5;box-shadow:0 8px 24px rgba(20,24,31,.12);overflow:hidden;display:flex;flex-direction:column}
+.desk{width:880px;background:var(--bg);border-radius:12px;border:1px solid #c5ccd5;box-shadow:0 8px 24px rgba(20,24,31,.12);overflow:hidden}
+.top{display:flex;align-items:center;gap:10px;padding:14px 16px;background:var(--bg)}
+.back{width:36px;height:36px;border-radius:10px;background:#fff;display:grid;place-items:center;border:1px solid var(--line)}
+.brand{font-weight:700;font-size:18px;letter-spacing:-.02em}
+.brand small{display:block;font-size:10px;letter-spacing:.14em;color:var(--teal);font-weight:700;margin-top:-2px}
+.secure{margin-left:auto;background:var(--teal-soft);color:var(--teal);font-size:12px;font-weight:600;padding:5px 10px;border-radius:99px}
+.lang{margin-left:6px;font-size:12px;border:1px solid var(--line);background:#fff;padding:5px 9px;border-radius:99px}
+.body{padding:4px 16px 16px;flex:1}
+h3{font-size:24px;line-height:1.15;margin:8px 0 6px;letter-spacing:-.02em}
+p.lead{margin:0 0 14px;color:var(--muted)}
+.card{background:var(--card);border-radius:16px;padding:14px;margin-bottom:12px;box-shadow:0 1px 2px rgba(20,24,31,.05);border:1px solid #edf0f3}
+.card h4{margin:0 0 8px;font-size:14px}
+.label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-top:1px solid var(--line);font-size:14px}
+.kv:first-of-type{border-top:0}
+.kv span:first-child{color:var(--muted)}
+.kv span:last-child{font-weight:600;text-align:right}
+.btn{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;padding:15px;border-radius:14px;background:var(--btn);color:#fff;font-weight:600;border:0;font-size:16px;margin-top:6px}
+.btn.teal{background:var(--teal)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--line)}
+.btn.off{background:#dfe3e8;color:#7b8594}
+.hint{font-size:12px;color:var(--muted);text-align:center;margin:6px 0 0}
+.link{display:block;text-align:center;color:var(--ink);font-weight:600;margin:14px 0 4px;font-size:14px}
+.link.teal{color:var(--teal)}
+.foot{padding:10px 16px 18px;text-align:center;font-size:12px;color:var(--muted)}
+.foot a{color:var(--teal);font-weight:600}
+.chip{display:inline-block;background:var(--chip);border-radius:8px;padding:3px 8px;font-size:12px;font-weight:600;color:#3a4350}
+.chip.ok{background:var(--teal-soft);color:var(--teal)}
+.chip.warn{background:var(--amber-soft);color:var(--amber)}
+.chip.bad{background:var(--red-soft);color:var(--red)}
+.notice{border-radius:14px;padding:12px;font-size:13px;margin-bottom:12px;display:flex;gap:10px}
+.notice.info{background:#e8eef6;color:#24415f}
+.notice.warn{background:var(--amber-soft);color:var(--amber)}
+.notice.err{background:var(--red-soft);color:var(--red)}
+.notice.ok{background:var(--teal-soft);color:var(--teal)}
+.progress{display:flex;gap:6px;margin:4px 0 6px}
+.progress i{flex:1;height:5px;border-radius:9px;background:#d5dae0}
+.progress i.on{background:var(--teal)}
+.stepmeta{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--muted);margin-bottom:10px}
+.opt{display:flex;gap:12px;align-items:flex-start;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:13px;margin-bottom:10px}
+.opt.sel{border-color:var(--teal);background:#f3fbf8}
+.dot{width:20px;height:20px;border-radius:50%;border:2px solid #b7c0cb;flex:none;margin-top:2px}
+.opt.sel .dot{border-color:var(--teal);background:radial-gradient(var(--teal) 45%,transparent 50%)}
+.opt b{display:block;font-size:15px}
+.opt span.s{font-size:13px;color:var(--muted)}
+.field{margin-bottom:12px}
+.field label{display:block;font-size:14px;font-weight:600;margin-bottom:5px}
+.field label em{font-style:normal;color:var(--muted);font-weight:500;float:right;font-size:12px}
+.input{background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:12px;color:var(--muted);font-size:15px}
+.input.val{color:var(--ink)}
+.input.err{border-color:var(--red)}
+.errtxt{color:var(--red);font-size:12px;margin-top:4px}
+.tl{list-style:none;margin:0;padding:0}
+.tl li{position:relative;padding:0 0 16px 28px;font-size:14px}
+.tl li:before{content:"";position:absolute;left:5px;top:5px;width:10px;height:10px;border-radius:50%;background:var(--teal)}
+.tl li:after{content:"";position:absolute;left:9px;top:18px;bottom:-4px;width:2px;background:#cfe6df}
+.tl li:last-child:after{display:none}
+.tl li.todo:before{background:#fff;border:2px solid #b7c0cb;left:4px;top:4px}
+.tl li.todo:after{background:#e3e7ec}
+.tl small{display:block;color:var(--muted);font-size:12px}
+.big{width:84px;height:84px;border-radius:50%;margin:18px auto 10px;display:grid;place-items:center;font-size:36px;background:var(--teal-soft);color:var(--teal)}
+.big.amber{background:var(--amber-soft);color:var(--amber)}
+.big.grey{background:var(--chip);color:#4b5563}
+.center{text-align:center}
+.file{display:flex;gap:10px;align-items:center}
+.ficon{width:40px;height:40px;border-radius:10px;background:var(--red-soft);color:var(--red);display:grid;place-items:center;font-weight:700;font-size:11px}
+.sample{outline:2px dashed #c9a24a;outline-offset:-2px}
+.tag{position:absolute;top:8px;right:8px;background:#fff7e0;color:#7a5200;border:1px solid #e8c981;font-size:10px;padding:2px 6px;border-radius:6px;font-weight:700}
+.rel{position:relative}
+/* desktop */
+.dtop{display:flex;align-items:center;gap:16px;background:#fff;border-bottom:1px solid var(--line);padding:12px 20px}
+.dtop .org{margin-left:auto;font-size:13px;color:var(--muted)}
+.dlayout{display:flex}
+.side{width:190px;background:#fff;border-right:1px solid var(--line);padding:14px 10px;min-height:520px}
+.side a{display:block;padding:9px 12px;border-radius:9px;color:var(--ink);font-size:14px;font-weight:500}
+.side a.on{background:var(--teal-soft);color:var(--teal);font-weight:600}
+.dmain{flex:1;padding:18px 20px}
+table{width:100%;border-collapse:collapse;background:#fff;border-radius:12px;overflow:hidden;font-size:13px}
+th{background:#f0f3f6;text-align:left;padding:9px 10px;font-size:11px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+td{padding:10px;border-top:1px solid var(--line)}
+.filters{display:flex;gap:8px;margin:10px 0 12px;flex-wrap:wrap}
+.pill{background:#fff;border:1px solid var(--line);border-radius:99px;padding:5px 12px;font-size:13px}
+.pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.cols{display:grid;grid-template-columns:1.2fr 1fr;gap:14px}
+.map{height:120px;border-radius:10px;background:linear-gradient(135deg,#d8ebe3,#c9dfe9);position:relative;margin-top:8px}
+.map:after{content:"";position:absolute;left:46%;top:40%;width:14px;height:14px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 14px rgba(11,107,92,.2)}
+.check{display:flex;gap:10px;align-items:flex-start;margin:6px 0;font-size:14px}
+.box{width:18px;height:18px;border:2px solid #b7c0cb;border-radius:5px;flex:none;margin-top:2px}
+.box.on{background:var(--teal);border-color:var(--teal)}
+.legend{margin:0 16px 8px;color:var(--muted);font-size:13px}
+@media(max-width:900px){.desk{width:100%;overflow:auto}.dlayout{min-width:760px}}
+@media(max-width:430px){.phone{width:100%}}
+</style>
+</head>
+<body>
+
+<h1>Ekhaya: new screens (design mockups)</h1>
+<p class="intro">Static mockups for screens in <code>docs/screen-spec.md</code> that were not in the first set. All data is invented. "Example Financial Services" is a placeholder organisation. These are not a build, and nothing here is a real verification result.</p>
+
+<h2 class="group">Customer flow: evidence alternatives (C6, C7)</h2>
+<div class="row">
+
+<figure><figcaption><b>C6</b> Cannot provide evidence</figcaption>
+<div class="phone">
+  <div class="top"><div class="back">‹</div><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div></div>
+  <div class="body">
+    <div class="stepmeta"><span>STEP 3 OF 4</span><span>Supporting evidence</span></div>
+    <div class="progress"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+    <h3>No problem. Let's find another way</h3>
+    <p class="lead">Many people do not have a document in their name. Tell us which fits you best.</p>
+    <div class="opt sel"><div class="dot"></div><div><b>I have no document in my name</b><span class="s">For example, you live in a family homestead.</span></div></div>
+    <div class="opt"><div class="dot"></div><div><b>My document is old</b><span class="s">It is more than 3 months old.</span></div></div>
+    <div class="opt"><div class="dot"></div><div><b>Another reason</b><span class="s">You can explain on the next screen.</span></div></div>
+    <div class="card" style="margin-top:14px">
+      <h4>What can you do instead?</h4>
+      <div class="kv"><span>Ask someone to confirm</span><span class="chip ok">Recommended</span></div>
+      <div class="kv"><span>Describe your situation</span><span class="chip">Optional</span></div>
+    </div>
+    <button class="btn teal">Ask someone to confirm my address</button>
+    <button class="btn ghost">Continue without evidence</button>
+    <p class="hint">Continuing without evidence may mean the request cannot be completed. That is not a judgement about you.</p>
+    <a class="link">‹ Back to evidence</a>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>C7</b> Ask someone to confirm</figcaption>
+<div class="phone">
+  <div class="top"><div class="back">‹</div><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div></div>
+  <div class="body">
+    <h3>Who can confirm where you live?</h3>
+    <p class="lead">We will send them a short message. They only answer yes, no or not sure.</p>
+    <div class="field"><label>Their name</label><div class="input val">Nomsa Dlamini</div></div>
+    <div class="field"><label>How do they know you?</label>
+      <div class="input val">Neighbour ▾</div></div>
+    <div class="field"><label>Their phone number</label><div class="input val">+268 7612 3456</div></div>
+    <div class="notice info"><div>ⓘ</div><div>We use their number only to send this request. They will not be told the result of your verification.</div></div>
+    <div class="card">
+      <h4>Others who can confirm</h4>
+      <div class="kv"><span>Chief's office / umphakatsi</span><span>Option</span></div>
+      <div class="kv"><span>Employer or landlord</span><span>Option</span></div>
+    </div>
+    <button class="btn teal">Send request</button>
+    <a class="link">Skip for now</a>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+</div>
+
+<h2 class="group">Customer flow: after submitting (C9, C13)</h2>
+<div class="row">
+
+<figure><figcaption><b>C9</b> Submitted and status</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div><div class="lang">EN ▾</div></div>
+  <div class="body">
+    <div class="big">✓</div>
+    <h3 class="center">We have received your request</h3>
+    <p class="lead center">Ref EKH-10482 · Submitted today, 14:32</p>
+    <div class="card">
+      <div class="label">Status</div>
+      <div style="margin:6px 0 10px"><span class="chip warn">In review</span></div>
+      <ul class="tl">
+        <li>Request submitted<small>Today, 14:32</small></li>
+        <li>Confirmation from Nomsa D. received<small>Today, 16:05</small></li>
+        <li>Being reviewed<small>Usually within 2 working days</small></li>
+        <li class="todo">Decision<small>We will message you</small></li>
+      </ul>
+    </div>
+    <div class="notice info"><div>ⓘ</div><div>Submitting does not mean your address has been verified. You will see a result when the review is done.</div></div>
+    <button class="btn ghost">Add or correct information</button>
+    <button class="btn ghost">Withdraw my request</button>
+    <a class="link teal">Make a complaint or ask for a review</a>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>C9</b> More information needed</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div><div class="lang">EN ▾</div></div>
+  <div class="body">
+    <div class="big amber">!</div>
+    <h3 class="center">We need a little more from you</h3>
+    <p class="lead center">Ref EKH-10482 · Reply by 3 Nov 2026</p>
+    <div class="card">
+      <div class="label">What the reviewer asked</div>
+      <p style="margin:8px 0 0">"The photo is blurry. Please add a clear photo of the document, or a short note on how to find your homestead."</p>
+    </div>
+    <div class="card rel sample"><span class="tag">SAMPLE</span>
+      <div class="file"><div class="ficon">JPG</div><div><b>proof_of_residence.jpg</b><div style="font-size:12px;color:var(--muted)">1.8 MB · needs a clearer photo</div></div></div>
+    </div>
+    <button class="btn teal">Take a new photo</button>
+    <button class="btn ghost">Add a note instead</button>
+    <p class="hint">Only the part the reviewer asked about is reopened. Your other answers stay as they are.</p>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>C9</b> Could not be completed</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div><div class="lang">EN ▾</div></div>
+  <div class="body">
+    <div class="big grey">–</div>
+    <h3 class="center">This request could not be completed</h3>
+    <p class="lead center">Ref EKH-10482</p>
+    <div class="card">
+      <div class="label">Why</div>
+      <p style="margin:8px 0 0">We did not have enough information to confirm the address. This does not mean you did anything wrong.</p>
+    </div>
+    <div class="card">
+      <h4>What you can do</h4>
+      <div class="kv"><span>Ask the business for a new request</span><span>›</span></div>
+      <div class="kv"><span>Add evidence and ask for a review</span><span>›</span></div>
+      <div class="kv"><span>Make a complaint</span><span>›</span></div>
+    </div>
+    <button class="btn teal">Ask for a review</button>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>C13</b> Your data and choices</figcaption>
+<div class="phone">
+  <div class="top"><div class="back">‹</div><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div></div>
+  <div class="body">
+    <h3>Your information</h3>
+    <p class="lead">What was shared, and your choices.</p>
+    <div class="card">
+      <h4>Shared with Example Financial Services</h4>
+      <div class="kv"><span>Address</span><span>Yes</span></div>
+      <div class="kv"><span>Uploaded evidence</span><span>Yes</span></div>
+      <div class="kv"><span>Shared on</span><span>29 Oct 2026</span></div>
+      <div class="kv"><span>Kept until</span><span>[period to confirm]</span></div>
+    </div>
+    <button class="btn ghost">Request a copy of my data</button>
+    <button class="btn ghost">Correct my details</button>
+    <button class="btn ghost">Stop future sharing</button>
+    <button class="btn ghost">Ask for deletion</button>
+    <p class="hint">What can be deleted depends on the law and the business's records duty. We will explain after you ask.</p>
+    <a class="link teal">Make a complaint</a>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+</div>
+
+<h2 class="group">Customer flow: exits and errors (C10, C11, C12)</h2>
+<div class="row">
+
+<figure><figcaption><b>C10</b> Don't recognise this request</figcaption>
+<div class="phone">
+  <div class="top"><div class="back">‹</div><div class="brand">ekhaya<small>VERIFICATION</small></div></div>
+  <div class="body">
+    <h3>What would you like to do?</h3>
+    <p class="lead">Request EKH-10482 from Example Financial Services.</p>
+    <div class="opt"><div class="dot"></div><div><b>I don't want to do this</b><span class="s">We tell the business you declined. We share none of your details.</span></div></div>
+    <div class="opt sel"><div class="dot"></div><div><b>I don't recognise this request</b><span class="s">You did not expect it, or it may be a scam.</span></div></div>
+    <div class="notice warn"><div>⚠</div><div>Do not share codes or personal details with anyone who contacted you about this link.</div></div>
+    <button class="btn teal">Report this request</button>
+    <a class="link">Back</a>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>C10</b> Report sent</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div></div>
+  <div class="body">
+    <div class="big">✓</div>
+    <h3 class="center">Thank you. We have paused this request</h3>
+    <p class="lead center">No one can continue this link while we look into it.</p>
+    <div class="card">
+      <div class="kv"><span>Report reference</span><span>RPT-2291</span></div>
+      <div class="kv"><span>Next</span><span>Ekhaya team will check</span></div>
+    </div>
+    <button class="btn ghost">Contact Ekhaya Support</button>
+  </div>
+  <div class="foot">You can close this page.</div>
+</div></figure>
+
+<figure><figcaption><b>C11</b> Offline / upload problem</figcaption>
+<div class="phone">
+  <div class="top"><div class="back">‹</div><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div></div>
+  <div class="body">
+    <div class="notice warn"><div>⚠</div><div><b>No internet.</b> Your answers are saved on this device. We will keep trying.</div></div>
+    <div class="stepmeta"><span>STEP 3 OF 4</span><span>Supporting evidence</span></div>
+    <div class="card">
+      <div class="file"><div class="ficon">JPG</div><div style="flex:1"><b>proof_of_residence.jpg</b><div style="font-size:12px;color:var(--red)">Upload failed. Connection lost</div></div></div>
+      <button class="btn teal" style="margin-top:10px">Try again</button>
+      <button class="btn ghost">Choose another file</button>
+    </div>
+    <div class="card">
+      <h4>Other things that can happen</h4>
+      <div class="kv"><span>File over 10 MB</span><span class="chip bad">Choose a smaller file</span></div>
+      <div class="kv"><span>Not JPG, PNG or PDF</span><span class="chip bad">Change file type</span></div>
+      <div class="kv"><span>Page timed out</span><span class="chip">Sign in again</span></div>
+    </div>
+    <p class="hint">If this keeps happening, tell support: <b>ERR-4F21</b></p>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>C12</b> Expired link</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div></div>
+  <div class="body">
+    <div class="big grey">⏱</div>
+    <h3 class="center">This link has expired</h3>
+    <p class="lead center">Verification links last 48 hours. This one ended on 31 Oct 2026, 14:00.</p>
+    <div class="card">
+      <h4>What now?</h4>
+      <p style="margin:0;color:var(--muted)">Ask Example Financial Services to send you a new request. Anything you saved is kept only until the link's end date.</p>
+    </div>
+    <button class="btn ghost">Contact Ekhaya Support</button>
+    <p class="hint">For your privacy, we do not show request details on an expired link.</p>
+  </div>
+</div></figure>
+
+</div>
+
+<h2 class="group">Attester flow: a neighbour or chief's office (A1 to A3)</h2>
+<p class="legend">The attester opens a link from an SMS. No account. They are not told the verification result.</p>
+<div class="row">
+
+<figure><figcaption><b>A1</b> Request</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div><div class="lang">SS ▾</div></div>
+  <div class="body">
+    <h3>Can you confirm where someone lives?</h3>
+    <p class="lead">Thandi Nkambule asked you to confirm her address. It takes about a minute.</p>
+    <div class="card">
+      <div class="label">What you are asked</div>
+      <p style="margin:6px 0 0"><b>Does Thandi live in Ezulwini Valley, near the Ezulwini Catholic Clinic?</b></p>
+    </div>
+    <div class="card">
+      <h4>Before you answer</h4>
+      <div class="kv"><span>We will keep</span><span>Your name, number and answer</span></div>
+      <div class="kv"><span>You may be asked</span><span>How long you have known her</span></div>
+      <div class="kv"><span>You will not be told</span><span>The verification result</span></div>
+      <a class="link teal" style="text-align:left;margin:8px 0 0">Read the privacy notice ›</a>
+    </div>
+    <button class="btn teal">Continue</button>
+    <button class="btn ghost">I would rather not answer</button>
+    <a class="link">I don't know this person</a>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>A2</b> Confirmation</figcaption>
+<div class="phone">
+  <div class="top"><div class="back">‹</div><div class="brand">ekhaya<small>VERIFICATION</small></div><div class="secure">Secure</div></div>
+  <div class="body">
+    <h3>Does Thandi Nkambule live there?</h3>
+    <p class="lead">Ezulwini Valley, near the Ezulwini Catholic Clinic.</p>
+    <div class="opt sel"><div class="dot"></div><div><b>Yes, she lives there</b></div></div>
+    <div class="opt"><div class="dot"></div><div><b>No, she does not</b></div></div>
+    <div class="opt"><div class="dot"></div><div><b>I am not sure</b></div></div>
+    <div class="field" style="margin-top:12px"><label>How long have you known her at this address?</label>
+      <div class="input val">More than 2 years ▾</div></div>
+    <div class="field"><label>Anything to add? <em>Optional</em></label>
+      <div class="input">e.g. "She is my neighbour across the path."</div></div>
+    <div class="check"><div class="box on"></div><div>I confirm my answer is true as far as I know.</div></div>
+    <button class="btn teal">Send my answer</button>
+  </div>
+  <div class="foot">Need help? <a>Contact Ekhaya Support</a></div>
+</div></figure>
+
+<figure><figcaption><b>A3</b> Thanks</figcaption>
+<div class="phone">
+  <div class="top"><div class="brand">ekhaya<small>VERIFICATION</small></div></div>
+  <div class="body">
+    <div class="big">✓</div>
+    <h3 class="center">Thank you</h3>
+    <p class="lead center">Your answer has been sent. You do not need to do anything else.</p>
+    <div class="card">
+      <h4>Was this a mistake?</h4>
+      <p style="margin:0 0 8px;color:var(--muted)">If you did not expect this request, or your details were used without asking, tell us.</p>
+      <button class="btn ghost">Report a problem</button>
+    </div>
+  </div>
+  <div class="foot">You can close this page.</div>
+</div></figure>
+
+</div>
+
+<h2 class="group">Business console (B2, B5)</h2>
+<div class="row">
+
+<figure><figcaption><b>B2</b> Case list</figcaption>
+<div class="desk">
+  <div class="dtop"><div class="brand">ekhaya<small>BUSINESS</small></div><div class="org">Example Financial Services · Reviewer ▾</div></div>
+  <div class="dlayout">
+    <div class="side"><a class="on">Cases</a><a>New request</a><a>Review queue</a><a>Reports</a><a>Team</a><a>Developers</a><a>Settings</a></div>
+    <div class="dmain">
+      <div style="display:flex;justify-content:space-between;align-items:center"><div style="font-size:20px;font-weight:700">Cases</div><button class="btn teal" style="width:auto;padding:10px 16px;margin:0">+ New request</button></div>
+      <div class="filters"><span class="pill on">All</span><span class="pill">Pending consent</span><span class="pill">In progress</span><span class="pill">Pending review</span><span class="pill">Verified</span><span class="pill">Unable to verify</span><span class="pill">Expired</span></div>
+      <table>
+        <tr><th>Reference</th><th>Customer ref</th><th>Type</th><th>Status</th><th>Created</th><th>Reviewer</th><th>Evidence</th></tr>
+        <tr><td>EKH-10482</td><td>CLIENT-1042</td><td>Residential address</td><td><span class="chip warn">Pending review</span></td><td>29 Oct</td><td>T. Mamba</td><td>2 files · 1 attest.</td></tr>
+        <tr><td>EKH-10481</td><td>CLIENT-1041</td><td>Residential address</td><td><span class="chip">In progress</span></td><td>29 Oct</td><td>–</td><td>0</td></tr>
+        <tr><td>EKH-10477</td><td>CLIENT-1037</td><td>Residential address</td><td><span class="chip ok">Verified</span></td><td>28 Oct</td><td>S. Simelane</td><td>1 file</td></tr>
+        <tr><td>EKH-10470</td><td>CLIENT-1030</td><td>Residential address</td><td><span class="chip">Unable to verify</span></td><td>27 Oct</td><td>S. Simelane</td><td>0 · 1 attest.</td></tr>
+        <tr><td>EKH-10466</td><td>CLIENT-1026</td><td>Residential address</td><td><span class="chip bad">Expired</span></td><td>25 Oct</td><td>–</td><td>0</td></tr>
+      </table>
+      <p class="hint" style="text-align:left">Synthetic data. This list shows only this organisation's cases.</p>
+    </div>
+  </div>
+</div></figure>
+
+<figure><figcaption><b>B5</b> Case review and decision</figcaption>
+<div class="desk">
+  <div class="dtop"><div class="brand">ekhaya<small>BUSINESS</small></div><div class="org">Example Financial Services · Reviewer ▾</div></div>
+  <div class="dlayout">
+    <div class="side"><a>Cases</a><a>New request</a><a class="on">Review queue</a><a>Reports</a><a>Team</a><a>Developers</a><a>Settings</a></div>
+    <div class="dmain">
+      <div style="display:flex;gap:10px;align-items:center;margin-bottom:10px"><div style="font-size:20px;font-weight:700">EKH-10482</div><span class="chip warn">Pending review</span><span class="chip">Policy v1.2</span></div>
+      <div class="cols">
+        <div>
+          <div class="card"><h4>Address (customer-submitted)</h4>
+            <div class="kv"><span>Region</span><span>Hhohho</span></div>
+            <div class="kv"><span>Community</span><span>Ezulwini Valley</span></div>
+            <div class="kv"><span>Landmark</span><span>Ezulwini Catholic Clinic</span></div>
+            <div class="kv"><span>Directions</span><span>Right past the white water tank</span></div>
+            <div class="kv"><span>Source</span><span class="chip">Customer-submitted</span></div>
+            <div class="kv"><span>Reference match</span><span class="chip">Not matched</span></div>
+            <div class="kv"><span>Official match</span><span class="chip">None available</span></div>
+            <div class="map"></div>
+            <p class="hint" style="text-align:left">Pin accuracy ±15 m, captured by device GPS. GPS does not prove residence.</p>
+          </div>
+          <div class="card"><h4>Checks</h4>
+            <div class="kv"><span>Required fields present</span><span class="chip ok">Pass</span></div>
+            <div class="kv"><span>Pin inside chosen region</span><span class="chip ok">Pass</span></div>
+            <div class="kv"><span>Evidence quality</span><span class="chip warn">Review</span></div>
+            <div class="kv"><span>Attestation</span><span class="chip ok">1 yes</span></div>
+          </div>
+        </div>
+        <div>
+          <div class="card"><h4>Evidence</h4>
+            <div class="file"><div class="ficon">JPG</div><div><b>proof_of_residence.jpg</b><div style="font-size:12px;color:var(--muted)">Open (signed, expires in 5 min)</div></div></div>
+            <div class="kv" style="margin-top:10px"><span>Attester</span><span>Nomsa D. · Neighbour · Yes</span></div>
+          </div>
+          <div class="card"><h4>Decision</h4>
+            <div class="opt sel" style="padding:9px"><div class="dot"></div><div><b>Verified</b></div></div>
+            <div class="opt" style="padding:9px"><div class="dot"></div><div><b>Unable to verify</b></div></div>
+            <div class="opt" style="padding:9px"><div class="dot"></div><div><b>Rejected</b><span class="s">Needs a second reviewer</span></div></div>
+            <div class="field"><label>Reason code</label><div class="input val">Evidence and attestation consistent ▾</div></div>
+            <div class="check"><div class="box on"></div><div>Evidence reviewed</div></div>
+            <div class="check"><div class="box on"></div><div>Address is consistent</div></div>
+            <div class="check"><div class="box"></div><div>Attestation considered</div></div>
+            <button class="btn off">Record decision</button>
+            <p class="hint">Complete the checklist to continue.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></figure>
+
+</div>
+
+<p class="intro" style="margin-top:24px;margin-bottom:40px">Not mocked yet: B1 sign in, B3 create request, B4 other tabs, B6 to B10, and the platform admin screens (P1 to P6).</p>
+</body>
+</html>
