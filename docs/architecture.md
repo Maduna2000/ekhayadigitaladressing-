@@ -1,4 +1,4 @@
-# Ekhaya architecture (build, stage 1: database foundation)
+# Ekhaya architecture (build, stages 1-2: database foundation)
 
 Stack decision (from the project brief): React, TypeScript and Vite on the front end; Supabase Postgres, Auth and Storage; server logic in Edge Functions. The earlier Cloudflare D1 schema is archived in `legacy-d1/`.
 
@@ -21,7 +21,10 @@ docs/                  Research, screen spec, mockups, this file
 
 ## Integrity rules enforced in the database
 
-- Case status changes only through `transition_case()`. A trigger blocks every other path, including staff. Terminal states stay terminal.
+- Case status changes only through `transition_case()` and `decide_case()`. A trigger blocks every other path, including staff. Terminal states stay terminal.
+- Decisions (verified, unable to verify, rejected) go only through `decide_case()`: it needs a reason code and policy version, bars the case's creator from deciding it, and requires a **second, different reviewer** to confirm a rejection.
+- Consent is recorded only by trusted server code, with a snapshot of the purpose and notice version shown. Consent, decisions and attestations are append-only.
+- Attestations store only a hash of the one-time link token. The attester's name and contact are visible to owners, admins and reviewers only and never enter the audit log.
 - Address versions are immutable. A correction adds a version.
 - `provenance` (customer-submitted, reference-matched, officially matched) must agree with the source's kind. No official source exists yet, so "officially matched" cannot be recorded. GPS never changes provenance.
 - Required address components come from the address class (data), so a rural address needs only region and community.
@@ -37,13 +40,12 @@ docs/                  Research, screen spec, mockups, this file
 
 ## What is verified and what is not
 
-- Verified: all four migrations apply, and 91 SQL checks pass on a local Postgres 16 (`supabase/tests/run.sh`).
+- Verified: all four migrations apply, and 139 SQL checks pass on a local Postgres 16 (`supabase/tests/run.sh`).
 - Not verified: behaviour on real Supabase. The test harness uses a small stand-in for `auth.uid()` and the Supabase roles. Run the migrations on a real Supabase project (or the Supabase CLI) before relying on them.
-- Not built yet: consent records, evidence storage, attestation, review decisions and second review, API keys and webhooks, customer authentication, the React app, and organisation member invitation.
+- Not built yet: evidence file storage, API keys and webhooks, customer authentication, the React app, and organisation member invitation.
 
 ## Next stages
 
-1. Consent records, review decisions (with second review for rejections) and attestation tables, with tests.
-2. Supabase CLI config and a real-Supabase test run in CI.
-3. Vite + React + TypeScript scaffold, sign-in and organisation shell, then the case list and detail.
-4. Customer flow screens against Edge Functions that use the service role.
+1. Supabase CLI config and a real-Supabase test run in CI.
+2. Vite + React + TypeScript scaffold, sign-in and organisation shell, then the case list and detail.
+3. Customer flow screens against Edge Functions that use the service role.

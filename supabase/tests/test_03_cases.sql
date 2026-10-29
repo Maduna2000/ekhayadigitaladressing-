@@ -63,13 +63,15 @@ select t.ok(public.transition_case(current_setting('t.case_a')::uuid, 'pending_r
 
 -- Review ------------------------------------------------------------------------------------------
 select t.as_user(:'ana');
-select t.fails($$select public.transition_case(current_setting('t.case_a')::uuid, 'verified')$$,
-  '%may not move%', 'analyst cannot decide a case');
+select t.fails($$select public.decide_case(current_setting('t.case_a')::uuid, 'verified', 'evidence_consistent', '1.2')$$,
+  '%not allowed%', 'analyst cannot decide a case');
 select t.as_user(:'bob');
-select t.fails($$select public.transition_case(current_setting('t.case_a')::uuid, 'verified')$$,
+select t.fails($$select public.decide_case(current_setting('t.case_a')::uuid, 'verified', 'evidence_consistent', '1.2')$$,
   '%case not found%', 'another organisation''s owner cannot decide the case');
 select t.as_user(:'rev');
-select t.ok(public.transition_case(current_setting('t.case_a')::uuid, 'verified', 'evidence_consistent') = 'verified',
+select t.fails($$select public.transition_case(current_setting('t.case_a')::uuid, 'verified', 'evidence_consistent')$$,
+  '%may not move%', 'a decision cannot bypass decide_case via transition_case');
+select t.ok(public.decide_case(current_setting('t.case_a')::uuid, 'verified', 'evidence_consistent', '1.2') = 'verified',
   'reviewer can record a decision');
 select t.fails($$select public.transition_case(current_setting('t.case_a')::uuid, 'revoked')$$,
   '%may not move%', 'reviewer cannot revoke');
@@ -96,6 +98,8 @@ select t.fails($$select public.attach_address(current_setting('t.case_a')::uuid,
 select t.reset();
 select t.ok((select count(*) from public.audit_events where object_id = current_setting('t.case_a')
   and action = 'case.status_changed') = 5, 'every status change is audited');
+select t.ok((select count(*) from public.audit_events where object_id = current_setting('t.case_a')
+  and action = 'case.decision_recorded') = 1, 'the decision itself is audited');
 select t.ok((select metadata ->> 'from' from public.audit_events where object_id = current_setting('t.case_a')
   and metadata ->> 'to' = 'verified') = 'pending_review', 'audit records the previous status');
 select t.ok((select count(*) from public.audit_events where actor_type = 'system') = 3,
