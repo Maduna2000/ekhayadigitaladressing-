@@ -40,7 +40,7 @@ docs/                  Research, screen spec, mockups, this file
 
 ## What is verified and what is not
 
-- Verified: all four migrations apply, and 139 SQL checks pass on a local Postgres 16 (`supabase/tests/run.sh`).
+- Verified: all five migrations apply, and 139 SQL checks pass on a local Postgres 16 (`supabase/tests/run.sh`).
 - Not verified: behaviour on real Supabase. The test harness uses a small stand-in for `auth.uid()` and the Supabase roles. Run the migrations on a real Supabase project (or the Supabase CLI) before relying on them.
 - Not built yet: evidence file storage, API keys and webhooks, customer authentication, the React app, and organisation member invitation.
 
